@@ -105,9 +105,10 @@ This AI agent is a perfect fit for **Grow Stack** as it aligns with the company'
    - Replace `EMAIL_ADDRESS` and `EMAIL_PASSWORD` with your email credentials.
 5. Run the app:
  
-6.```bash
+6. ```bash
    streamlit run app.py
    ```
+
 
 ---
 
