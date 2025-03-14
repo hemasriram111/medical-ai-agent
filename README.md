@@ -91,16 +91,21 @@ This AI agent is a perfect fit for **Grow Stack** as it aligns with the company'
 
 ## Installation and Setup
 
-1. Install dependencies:
+
+1. ```bash
+   git clone https://github.com/hemasriram111/medical-ai-agent.git
+
+2. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-2. Configure Google Gemini API:
+3. Configure Google Gemini API:
    - Replace the `api_key` in the code with your Google Gemini API key.
-3. Configure Email:
+4. Configure Email:
    - Replace `EMAIL_ADDRESS` and `EMAIL_PASSWORD` with your email credentials.
-4. Run the app:
-   ```bash
+5. Run the app:
+ 
+6.```bash
    streamlit run app.py
    ```
 
