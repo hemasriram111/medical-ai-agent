@@ -1,7 +1,6 @@
 import streamlit as st
 import google.generativeai as genai
 from PIL import Image as PILImage
-import pytesseract
 import PyPDF2
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
@@ -15,6 +14,7 @@ from email.mime.application import MIMEApplication
 from email.mime.text import MIMEText
 import os
 import re
+import io
 
 # Set up Google Gemini API
 genai.configure(api_key="AIzaSyAiP-PYspe7CfXeJgeeEDtEuSkJCS-uBig")
@@ -23,10 +23,21 @@ genai.configure(api_key="AIzaSyAiP-PYspe7CfXeJgeeEDtEuSkJCS-uBig")
 EMAIL_ADDRESS = "gantihemanth143@gmail.com"
 EMAIL_PASSWORD = "eqtj mltm wzxp uygs"  # Use App Password if using Gmail
 
-# Function to extract text from an image using Tesseract OCR
+# Function to extract text from an image using Google Gemini API
 def extract_text_from_image(image):
+    # Convert PIL image to bytes for the API
     image = image.convert('RGB')
-    return pytesseract.image_to_string(image)
+    img_byte_arr = io.BytesIO()
+    image.save(img_byte_arr, format='PNG')
+    img_byte_arr = img_byte_arr.getvalue()
+
+    # Use Gemini model to extract text
+    model = genai.GenerativeModel('gemini-1.5-pro-002')  # Same model as your analysis
+    response = model.generate_content([
+        {"mime_type": "image/png", "data": img_byte_arr},
+        {"text": "Extract all text from this image."}
+    ])
+    return response.text
 
 # Function to extract text from a PDF file
 def extract_text_from_pdf(pdf_file):
