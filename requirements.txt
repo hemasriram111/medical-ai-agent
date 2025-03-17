@@ -4,4 +4,4 @@ Pillow==10.1.0
 pytesseract==0.3.10
 PyPDF2==3.0.1
 reportlab==4.1.0
-smtplib==0.0.1
+# smtplib==0.0.1
